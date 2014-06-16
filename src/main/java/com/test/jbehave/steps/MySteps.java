@@ -1,28 +1,47 @@
 package com.test.jbehave.steps;
 
+import com.test.jbehave.main.Base;
+import com.test.jbehave.pages.GoogleHomePage;
+import com.test.jbehave.pages.GoogleServiceLogin;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-public class MySteps {
+import org.jbehave.core.annotations.When;
+import org.jbehave.core.model.ExamplesTable;
 
-    static WebDriver driver;
+import java.util.Map;
 
-    @Given("I am in FF")
-    public void invokeBrowser() {
-        driver = new FirefoxDriver();
+public class MySteps extends Base{
+
+    private GoogleHomePage googleHomePage;
+    private GoogleServiceLogin googleServiceLogin;
+    private Map<String, String> message;
+
+    @Given("home google page $url")
+    public void givenGoogleBasePage(String url) {
+        googleHomePage = new GoogleHomePage();
+        googleHomePage.open(url);
     }
 
-    @Given("I navigate to google")
-    public void navigate() {
-        driver.get("http://www.google.co.in");
+    @Given("gmail authentication form")
+    public void givenGoogleAuthenticationForm() {
+        googleServiceLogin = googleHomePage.clickLoginButton();
     }
 
-    @Then("I verify search field")
-    public void verify() {// verifying search element in google home page
-        driver.findElement(By.id("gs_htif01")).isDisplayed();
-        driver.quit();
+    @When("the user has entered wrong username and password")
+    public void whenEnteredWrongAccount() {
+        googleServiceLogin.enterUserName("wrong@gmail.com");
+        googleServiceLogin.enterPassword("wrong");
+    }
+
+    @When("log-in button has been pressed")
+    public void whenPressedLoginButton() {
+        googleServiceLogin.pressEnterButton();
+    }
+
+    @Then("the user should see corresponding error message: $examplesTable")
+    public void thenExpectingErrorMessage(ExamplesTable examplesTable) {
+        message = examplesTable.getRow(0);
+        //Assert.assertTrue(googleServiceLogin.isLoginErrorMessage(message.get("message")));
     }
 
 }

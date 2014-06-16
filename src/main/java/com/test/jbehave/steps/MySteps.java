@@ -7,10 +7,11 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.jbehave.core.model.ExamplesTable;
+import org.testng.Assert;
 
 import java.util.Map;
 
-public class MySteps extends Base{
+public class MySteps extends Base {
 
     private GoogleHomePage googleHomePage;
     private GoogleServiceLogin googleServiceLogin;
@@ -41,7 +42,7 @@ public class MySteps extends Base{
     @Then("the user should see corresponding error message: $examplesTable")
     public void thenExpectingErrorMessage(ExamplesTable examplesTable) {
         message = examplesTable.getRow(0);
-        //Assert.assertTrue(googleServiceLogin.isLoginErrorMessage(message.get("message")));
+        Assert.assertTrue(googleServiceLogin.isLoginErrorMessage(message.get("message")));
     }
 
 }

@@ -9,9 +9,12 @@ import org.openqa.selenium.support.FindBy;
  */
 public class GoogleServiceLogin extends Page {
 
-   @FindBy (id = "Email") WebElement userNameElement;
-   @FindBy (id = "Passwd") WebElement passwordElement;
-   @FindBy (id = "signIn") WebElement enterButtonElement;
+    final String errorMessageId = "errormsg_0_Passwd";
+
+    @FindBy (id = "Email") WebElement userNameElement;
+    @FindBy (id = "Passwd") WebElement passwordElement;
+    @FindBy (id = "signIn") WebElement enterButtonElement;
+    @FindBy (id = errorMessageId) WebElement errorMessageElement;
 
     public void enterUserName(String userName) {
         type(userNameElement, userName);
@@ -25,12 +28,10 @@ public class GoogleServiceLogin extends Page {
         enterButtonElement.click();
     }
 
-    public boolean isLoginErrorMessage() {
-
-        /*isElementPresent("errormsg_0_Passwd");
-        System.out.println(selenium.getText("errormsg_0_Passwd"));
-        return selenium.getText("errormsg_0_Passwd").contains(message);*/
-        return true;
+    public boolean isLoginErrorMessage(String errorMessage) {
+        if(/*errorMessageElement.getText() == errorMessage) &&*/ errorMessageElement.isDisplayed())
+            return true;
+        else return false;
     }
 
 }

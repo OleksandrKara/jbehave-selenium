@@ -1,11 +1,16 @@
 package com.test.jbehave.main;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Enumeration;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -54,9 +59,9 @@ public class Driver {
 
 
 
-        driver = new FirefoxDriver();
+        //driver = new FirefoxDriver();
 
-        /*switch (System.getProperty("test.browser")) {
+        switch (System.getProperty("test.browser")) {
             case "firefox":
                 driver = new FirefoxDriver();
                 break;
@@ -75,7 +80,7 @@ public class Driver {
                 break;
             default:
                 throw new AssertionError("Unsupported browser: " + System.getProperty("test.browser"));
-        }*/
+        }
 
         //Configurations for synchronization
         driver.manage().timeouts().implicitlyWait(

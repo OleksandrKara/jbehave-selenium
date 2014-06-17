@@ -29,9 +29,9 @@ public class GoogleServiceLogin extends Page {
     }
 
     public boolean isLoginErrorMessage(String errorMessage) {
-        if(/*errorMessageElement.getText() == errorMessage) &&*/ errorMessageElement.isDisplayed())
+        if((errorMessageElement.getText().equals(errorMessage)) && errorMessageElement.isDisplayed()) {
             return true;
+        }
         else return false;
     }
-
 }

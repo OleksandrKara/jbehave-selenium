@@ -61,25 +61,25 @@ public class Driver {
 
         //driver = new FirefoxDriver();
 
-        switch (System.getProperty("test.browser")) {
-            case "firefox":
-                driver = new FirefoxDriver();
-                break;
-            case "chrome":
-                System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-                driver = new ChromeDriver();
-                break;
-            case "chrome_hub":
-                DesiredCapabilities capability = DesiredCapabilities.chrome();
-                try {
-                    driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capability);
-                } catch (MalformedURLException e1) {
-                    e1.printStackTrace();
-                    throw new AssertionError("Unexpected error during remote WebDriver setup");
-                }
-                break;
-            default:
-                throw new AssertionError("Unsupported browser: " + System.getProperty("test.browser"));
+        String s = System.getProperty("test.browser");
+        if (s.equals("firefox")) {
+            driver = new FirefoxDriver();
+
+        } else if (s.equals("chrome")) {
+            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+            driver = new ChromeDriver();
+
+        } else if (s.equals("chrome_hub")) {
+            DesiredCapabilities capability = DesiredCapabilities.chrome();
+            try {
+                driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capability);
+            } catch (MalformedURLException e1) {
+                e1.printStackTrace();
+                throw new AssertionError("Unexpected error during remote WebDriver setup");
+            }
+
+        } else {
+            throw new AssertionError("Unsupported browser: " + System.getProperty("test.browser"));
         }
 
         //Configurations for synchronization

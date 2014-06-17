@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.jbehave.selenium</groupId>
   <artifactId>jbehave-selenium</artifactId>
-  <version>1.0</version>
+  <version>1.1</version>
   <name>JBehave Stories</name>
 
   <properties>
@@ -35,7 +35,7 @@
     <dependency>
           <groupId>org.seleniumhq.selenium</groupId>
           <artifactId>selenium-java</artifactId>
-          <version>2.39.0</version>
+          <version>2.42.2</version>
     </dependency>
       <dependency>
           <groupId>org.testng</groupId>
@@ -60,15 +60,11 @@
     </resources>
     <pluginManagement>
       <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>2.1</version>
-          <configuration>
-            <source>1.5</source>
-            <target>1.5</target>
-          </configuration>
-        </plugin>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-scm-publish-plugin</artifactId>
+              <version>${project.version}</version>
+          </plugin>
       </plugins>
     </pluginManagement>
     <plugins>

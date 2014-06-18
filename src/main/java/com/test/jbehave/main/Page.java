@@ -1,6 +1,9 @@
 package com.test.jbehave.main;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -12,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by Oleksandr_Kara on 12-Jun-14.
  */
-public class Page {
+public class Page /*extends WebDriverPage*/ {
 
     public Page() {
         PageFactory.initElements(Driver.driver, this);

@@ -28,15 +28,6 @@ public class Driver {
     }
 
     public static WebDriver driver;
-    //private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-
-    /*public static WebDriver getDriver() {
-        return driver.get();
-    }
-
-    public static void set(WebDriver driverInput) {
-        driver.set(driverInput);
-    }*/
 
     public static void init() {
         //Configurations for file properties using
@@ -87,8 +78,6 @@ public class Driver {
                 Integer.parseInt(System.getProperty("test.timeout")),
                 TimeUnit.SECONDS
         ); //Configurations for synchronization
-
-        //Driver.set(driver);
     }
 
 
